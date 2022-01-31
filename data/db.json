@@ -1,0 +1,90 @@
+{
+  "decks": [
+    {
+      "id": 1,
+      "name": "Rendering in React",
+      "description": "React's component structure allows for quickly building a complex web application that relies on DOM manipulation. "
+    },
+    {
+      "name": "React Router",
+      "description": "React Router is a collection of navigational components that compose declaratively with your application.",
+      "id": 2
+    },
+    {
+      "name": "Munira Mogri",
+      "description": "1",
+      "id": 3
+    },
+    {
+      "name": "Munira Mogri",
+      "description": "1",
+      "id": 4
+    },
+    {
+      "name": "Munira Mogri",
+      "description": "1",
+      "id": 5
+    },
+    {
+      "name": "Munira Mogri",
+      "description": "2",
+      "id": 6
+    }
+  ],
+  "cards": [
+    {
+      "id": 1,
+      "front": "Differentiate between Real DOM and Virtual DOM.",
+      "back": "Virtual DOM updates are faster but do not directly update the HTML",
+      "deckId": 1
+    },
+    {
+      "id": 2,
+      "front": "How do you modify the state of a different React component?",
+      "back": "Not at all! State is visible to the component only.",
+      "deckId": 1
+    },
+    {
+      "id": 3,
+      "front": "How do you pass data 'down' to a React child component?",
+      "back": "As properties or props",
+      "deckId": 1
+    },
+    {
+      "front": "What path will match the follow Route?\n<Route>\n  <NotFound />\n</Route>",
+      "back": "All paths. A route with no path matches all URL's",
+      "deckId": 2,
+      "id": 4
+    },
+    {
+      "front": "What does <Switch> do?",
+      "back": "Renders the first matching child <Route> ",
+      "deckId": 2,
+      "id": 5
+    },
+    {
+      "front": "1",
+      "back": "1",
+      "deckId": 3,
+      "id": 6
+    },
+    {
+      "front": "1",
+      "back": "1",
+      "deckId": 4,
+      "id": 7
+    },
+    {
+      "front": "1",
+      "back": "1",
+      "deckId": 5,
+      "id": 8
+    },
+    {
+      "front": "2",
+      "back": "2",
+      "deckId": 6,
+      "id": 9
+    }
+  ]
+}
