@@ -36,7 +36,7 @@ function Study({cards}) {
       </nav>
       <h1>Study: {deck.name}</h1>
       <div>
-      {cards && cards.map((card) => <p>{card.front}</p>)}
+      {deck.cards && deck.cards.map((card) => <li key = {card.front}>{card.front}</li>)}
       </div>
      
       {/* <p>
