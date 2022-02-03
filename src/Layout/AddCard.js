@@ -35,7 +35,7 @@ function AddCard() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            <Link to={`/decks/${deck.id}`}>{`${deck.name}`}</Link>
+            <Link to={`/decks/${deckId}`}>{`${deck.name}`}</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
             Add Card

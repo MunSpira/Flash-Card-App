@@ -7,16 +7,17 @@ import Deck from "../Deck/Deck";
 import EditDeck from "./EditDeck";
 import AddCard from "./AddCard"
 import EditCard  from "./EditCard";
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import Study from "./Study";
+import { Route, Switch } from "react-router-dom";
 
-function Layout() {
+function Layout({frontCard}) {
                                                                                                                                                                                                                                                                                   
   return (
     <>
       <Header />
       <div className="container">
         {/* TODO: Implement the screen starting here */}
-        <Router>
+       
           <Switch>
             <Route exact path="/">
               <Home />
@@ -41,11 +42,15 @@ function Layout() {
                   <EditCard />
                   </Route>
 
+                  <Route exact path = "/decks/:deckId/study">
+                    <Study frontCard={frontCard}/>
+                    </Route>
+
             <Route>
               <NotFound />
             </Route>
           </Switch>
-        </Router>
+        
       </div>
     </>
   );

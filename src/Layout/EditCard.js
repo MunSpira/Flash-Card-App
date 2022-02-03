@@ -26,7 +26,7 @@ function EditCard() {
   }, [cardId]);
 
   function changeHandler(event) {
-    setDeck({ ...card, [event.target.name]: event.target.value });
+    setCard({ ...card, [event.target.name]: event.target.value });
   }
 
   async function handleSubmit  (event)  {
@@ -35,7 +35,7 @@ function EditCard() {
      const response = await updateCard(card)
     console.log(response)
 
-    history.push(`/decks/${response.id}`);
+    history.push(`/decks/${deckId}`);
   };
 
 
@@ -59,29 +59,29 @@ function EditCard() {
           <legend>Edit Card</legend>
           <div>
             <label>Front</label>
-            <input
+            <textarea
               type="text"
               id="front"
               name="front"
-              placeholder="Deck Name"
+              placeholder="Front side of card"
               value={card.front}
               onChange={changeHandler}
-            />
+            ></textarea>
           </div>
 
           <div>
             <label>Back</label>
             <textarea
-              id="back"
-              type="text"
-              name="back"
-              placeholder="Brief description of the deck"
-              value={card.back}
-              onChange={changeHandler}
+               id="back"
+               type="text"
+               name="back"
+               placeholder="Back side of card"
+               value={card.back}
+               onChange={changeHandler}
             ></textarea>
           </div>
 
-          <button ><Link to ={`/decks/${deck.id}`}>
+          <button ><Link to ={`/decks/${deckId}`}>
             Cancel</Link></button>
 
           <button type="submit" onClick={handleSubmit} >
