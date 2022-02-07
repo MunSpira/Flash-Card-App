@@ -52,44 +52,77 @@ function Deck() {
       <div>
         <h3>{`${deck.name}`}</h3>
         <p>{`${deck.description}`}</p>
-        <div>
-          <button onClick={handleEdit}>Edit</button>
-          <button onClick = {()=> {history.push(`/decks/${deck.id}/study`)}}>Study</button>
-          <button onClick={handleAddCards}>Add Cards</button>
-          <button onClick={handleDelete}>Delete</button>
+        <div className="d-flex bd-highlight mb-3">
+          <div className="p-2 bd-highlight">
+            <button className="btn btn-secondary" onClick={handleEdit}>
+              Edit
+            </button>
+          </div>
+          <div className="p-2 bd-highlight">
+            <button
+              className="btn btn-primary"
+              onClick={() => {
+                history.push(`/decks/${deck.id}/study`);
+              }}
+            >
+              Study
+            </button>
+          </div>
+          <div className="p-2 bd-highlight">
+            <button className="btn btn-primary" onClick={handleAddCards}>
+              + Add Cards
+            </button>
+          </div>
+          <div className="ml-auto p-2 bd-highlight">
+            <button className="btn btn-danger" onClick={handleDelete}>
+              Delete
+            </button>
+          </div>
         </div>
       </div>
       <div>
         <h1>Cards</h1>
-        <div>
-          {deck.cards &&
-            deck.cards.map((card) => (
-              <div key={card.id}>
-                <p>{card.front}</p>
-                <p>{card.back}</p>
-                <button
-                  onClick={() => {
-                    history.push(`/decks/${deckId}/cards/${card.id}/edit`);
-                  }}
-                >
-                  Edit
-                </button>
-                <button
-                  onClick={() => {
-                    if (
-                      window.confirm(
-                        "Delete this card? You will not be able to recover it."
-                      )
-                    ) {
-                      deleteCard(`${card.id}`);
-                      window.location.reload(false)
-                    }
-                  }}
-                >
-                  Delete
-                </button>
+        <div className="card">
+          {deck.cards?.map((card) => (
+            <div className="list-group-item" key={card.id}>
+              <div className="d-flex p-2 bd-highlight">
+                <div className= "container-fluid">
+                <div className="d-flex justify-content-between">
+                  <p>{card.front}</p>
+               
+                  <p>{card.back}</p>
+                </div>
+                </div>
               </div>
-            ))}
+              <div className="d-flex flex-row-reverse bd-highlight">
+                <div className="p-2 bd-highlight">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      if (window.confirm(
+                        "Delete this card? You will not be able to recover it."
+                      )) {
+                        deleteCard(`${card.id}`);
+                        window.location.reload(false);
+                      }
+                    } }
+                  >
+                    Delete
+                  </button>
+                </div>
+                <div className="p-2 bd-highlight">
+                  <button
+                    className="btn btn-secondary"
+                    onClick={() => {
+                      history.push(`/decks/${deckId}/cards/${card.id}/edit`);
+                    } }
+                  >
+                    Edit
+                  </button>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>

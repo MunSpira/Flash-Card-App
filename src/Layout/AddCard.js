@@ -8,15 +8,13 @@ function AddCard() {
 
   let { deckId } = useParams();
   deckId = Number(deckId);
- 
 
   function changeHandler(event) {
     setCard({ ...card, [event.target.name]: event.target.value });
   }
 
   async function handleSubmit() {
-    const response = await createCard(deckId, card);
-    console.log(response);
+    await createCard(deckId, card);
   }
 
   useEffect(() => {
@@ -45,7 +43,7 @@ function AddCard() {
       <form>
         <fieldset>
           <legend>{`${deck.name}`}: Add Card</legend>
-          <div>
+          <div className="form-group">
             <label>Front</label>
             <textarea
               type="text"
@@ -54,10 +52,11 @@ function AddCard() {
               placeholder="Front side of card"
               value={card.front}
               onChange={changeHandler}
+              className="form-control"
             ></textarea>
           </div>
 
-          <div>
+          <div className="form-group">
             <label>Back</label>
             <textarea
               id="back"
@@ -66,16 +65,27 @@ function AddCard() {
               placeholder="Back side of card"
               value={card.back}
               onChange={changeHandler}
+              className="form-control"
             ></textarea>
           </div>
-
-          <button>
-            <Link to={`/decks/${deck.id}`}>Done</Link>
-          </button>
-
-          <button type="submit" onClick={handleSubmit}>
-            Save
-          </button>
+          <div className="d-flex bd-highlight mb-3">
+            <div className="p-2 bd-highlight">
+              <button className="btn btn-secondary">
+                <Link to={`/decks/${deck.id}`} style={{ color: "#FFF" }}>
+                  Done
+                </Link>
+              </button>
+            </div>
+            <div className="p-2 bd-highlight">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Save
+              </button>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>

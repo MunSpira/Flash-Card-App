@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { readDeck } from "../utils/api";
 import { useParams, Link } from "react-router-dom";
-
-function Study({cards}) {
+import StudyCard from "./StudyCard";
+function Study() {
   const { deckId } = useParams();
 
   const [deck, setDeck] = useState([]);
@@ -14,10 +14,6 @@ function Study({cards}) {
     }
     loadDeck();
   }, [deckId]);
-
-  
-  
-
 
   return (
     <div>
@@ -35,19 +31,10 @@ function Study({cards}) {
         </ol>
       </nav>
       <h1>Study: {deck.name}</h1>
+
       <div>
-      {deck.cards && deck.cards.map((card) => <li key = {card.front}>{card.front}</li>)}
+        <StudyCard cards={deck.cards} />
       </div>
-     
-      {/* <p>
-         {deck.cards.length === 1
-          ? "Not enough cards. You need at least three cards to study. There is " +
-            deck.cards.length +
-            " card in this deck."
-          : "Not enough cards. You need at least three cards to study. There are " +
-            deck.cards.length +
-            " cards in this deck."}
-      </p> */}
     </div>
   );
 }

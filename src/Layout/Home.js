@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 import { listDecks, deleteDeck } from "../utils/api/index";
 
 function Home() {
   const history = useHistory();
-// const {deckId} = useParams()
+
   const [decks, setDecks] = useState([]);
 
   const handleCreate = () => {
@@ -19,44 +19,66 @@ function Home() {
     listOfDecks();
   }, []);
 
-
   return (
     <div>
-      <button onClick={handleCreate}>Create Deck</button>
+      <button className="btn btn-secondary" onClick={handleCreate}>
+        + Create Deck
+      </button>
 
-      <div>
+      <div className="card">
         {decks &&
           decks.map((deck) => (
-            <div key={deck.id}>
+            <div className="list-group-item" key={deck.id}>
               <div>
-                <h5>{deck.name}</h5>
-                <p>
+                <h5 className="card-title">{deck.name}</h5>
+                <h6 className="card-subtitle mb-2 text-muted">
                   {deck.cards.length > 1 || deck.cards.length === 0
                     ? deck.cards.length + " cards"
                     : deck.cards.length + " card"}
-                </p>
+                </h6>
               </div>
-              <p>{deck.description}</p>
-              <button onClick ={()=>{
-                  history.push(`/decks/${deck.id}`)
-              }}>View</button>
-              <button onClick = {()=>{
-                  history.push(`/decks/${deck.id}/study`)
-              }}>Study</button>
-              <button
-                onClick={() => {
-                  if (
-                    window.confirm(
-                      "Delete this deck? You will not be able to recover it."
-                    )
-                  ) {
-                    deleteDeck(`${deck.id}`);
-                   
-                  }
-                }}
-              >
-                Delete
-              </button>
+              <p className="card-text">{deck.description}</p>
+              <div className="d-flex bd-highlight mb-3">
+                <div className="p-2 bd-highlight">
+                  <button className="btn btn-primary">
+                    {" "}
+                    <Link to={`/decks/${deck.id}`} style={{ color: "#FFF" }}>
+                      {" "}
+                      View
+                    </Link>
+                  </button>
+                </div>
+
+                <div className="p-2 bd-highlight">
+                  <button className="btn btn-secondary">
+                    {" "}
+                    <Link
+                      to={`/decks/${deck.id}/study`}
+                      style={{ color: "#FFF" }}
+                    >
+                      {" "}
+                      Study
+                    </Link>
+                  </button>
+                </div>
+                <div className="ml-auto p-2 bd-highlight">
+                  <button
+                    className="btn btn-danger"
+                    onClick={() => {
+                      if (
+                        window.confirm(
+                          "Delete this deck? You will not be able to recover it."
+                        )
+                      ) {
+                        deleteDeck(`${deck.id}`);
+                        window.location.reload(false);
+                      }
+                    }}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
       </div>

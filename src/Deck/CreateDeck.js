@@ -1,26 +1,21 @@
 import React, { useState } from "react";
-import { createDeck } from "../utils/api/index"
-import { useHistory, Link} from "react-router-dom";
+import { createDeck } from "../utils/api/index";
+import { useHistory, Link } from "react-router-dom";
 
 function CreateDeck() {
   const [deck, setDeck] = useState({ name: "", description: "" });
   const history = useHistory();
- 
 
- async function handleSubmit  (event)  {
-    event.preventDefault()
-     ;
-     const response = await createDeck(deck)
-    console.log(response)
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const response = await createDeck(deck);
 
     history.push(`/decks/${response.id}`);
-  };
+  }
 
   function changeHandler(event) {
     setDeck({ ...deck, [event.target.name]: event.target.value });
   }
-
-  
 
   const handleCancel = () => {
     history.push("/");
@@ -42,7 +37,7 @@ function CreateDeck() {
       <form onSubmit={handleSubmit}>
         <fieldset>
           <legend>Create Deck</legend>
-          <div>
+          <div className="form-group">
             <label>Name</label>
             <input
               type="text"
@@ -51,11 +46,12 @@ function CreateDeck() {
               placeholder="Deck Name"
               value={deck.name}
               onChange={changeHandler}
+              className="form-control"
             />
           </div>
 
-          <div>
-            <label >Description</label>
+          <div className="form-group">
+            <label>Description</label>
             <textarea
               id="description"
               type="text"
@@ -63,14 +59,25 @@ function CreateDeck() {
               placeholder="Brief description of the deck"
               value={deck.description}
               onChange={changeHandler}
+              className="form-control"
             ></textarea>
           </div>
-
-          <button onClick={handleCancel}>Cancel</button>
-
-          <button onClick={handleSubmit} type="submit">
-            Submit
-          </button>
+          <div className="d-flex bd-highlight mb-3">
+            <div className="p-2 bd-highlight">
+              <button className="btn btn-secondary" onClick={handleCancel}>
+                Cancel
+              </button>
+            </div>
+            <div className="p-2 bd-highlight">
+              <button
+                className="btn btn-primary"
+                onClick={handleSubmit}
+                type="submit"
+              >
+                Submit
+              </button>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>

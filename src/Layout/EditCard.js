@@ -7,7 +7,7 @@ function EditCard() {
   const { cardId } = useParams();
   const [deck, setDeck] = useState({ name: "", description: "" });
   const [card, setCard] = useState({ front: "", back: "" });
-  const history = useHistory()
+  const history = useHistory();
 
   useEffect(() => {
     async function loadDecks() {
@@ -29,15 +29,12 @@ function EditCard() {
     setCard({ ...card, [event.target.name]: event.target.value });
   }
 
-  async function handleSubmit  (event)  {
-    event.preventDefault()
-     ;
-     const response = await updateCard(card)
-    console.log(response)
+  async function handleSubmit(event) {
+    event.preventDefault();
+    await updateCard(card);
 
     history.push(`/decks/${deckId}`);
-  };
-
+  }
 
   return (
     <div>
@@ -56,38 +53,54 @@ function EditCard() {
       </nav>
       <form>
         <fieldset>
-          <legend>Edit Card</legend>
+          <h2>Edit Card</h2>
           <div>
             <label>Front</label>
-            <textarea
-              type="text"
-              id="front"
-              name="front"
-              placeholder="Front side of card"
-              value={card.front}
-              onChange={changeHandler}
-            ></textarea>
+            <div className="form-group">
+              <textarea
+                type="text"
+                id="front"
+                name="front"
+                placeholder="Front side of card"
+                value={card.front}
+                onChange={changeHandler}
+                className="form-control"
+              ></textarea>
+            </div>
           </div>
 
           <div>
             <label>Back</label>
-            <textarea
-               id="back"
-               type="text"
-               name="back"
-               placeholder="Back side of card"
-               value={card.back}
-               onChange={changeHandler}
-            ></textarea>
+            <div className="form-group">
+              <textarea
+                id="back"
+                type="text"
+                name="back"
+                placeholder="Back side of card"
+                value={card.back}
+                onChange={changeHandler}
+                className="form-control"
+              ></textarea>
+            </div>
           </div>
-
-          <button ><Link to ={`/decks/${deckId}`}>
-            Cancel</Link></button>
-
-          <button type="submit" onClick={handleSubmit} >
-            Submit
-           
-          </button>
+          <div className="d-flex bd-highlight mb-3">
+            <div className="p-2 bd-highlight">
+              <button className="btn btn-secondary">
+                <Link to={`/decks/${deckId}`} style={{ color: "#FFF" }}>
+                  Cancel
+                </Link>
+              </button>
+            </div>
+            <div className="p-2 bd-highlight">
+              <button
+                className="btn btn-primary"
+                type="submit"
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
+            </div>
+          </div>
         </fieldset>
       </form>
     </div>
