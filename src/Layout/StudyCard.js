@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 
 function StudyCard({ cards }) {
+  console.log ("cards" + cards)
   const [currentCard, setCurrentCard] = useState(0);
   const [frontSide, setFrontSide] = useState(true);
   const history = useHistory();
@@ -38,7 +39,7 @@ function StudyCard({ cards }) {
   if (cards.length > 2) {
     return (
       <div>
-        {cards && (
+        {(
           <div className="list-group-item">
             <h4>
               Card {currentCard + 1} of {cards.length}

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { readDeck, createCard } from "../utils/api/index";
 import { Link, useParams } from "react-router-dom";
+import Form from "./Form";
 
 function AddCard() {
   const [deck, setDeck] = useState({ name: "", description: "" });
@@ -40,54 +41,15 @@ function AddCard() {
           </li>
         </ol>
       </nav>
-      <form>
-        <fieldset>
-          <legend>{`${deck.name}`}: Add Card</legend>
-          <div className="form-group">
-            <label>Front</label>
-            <textarea
-              type="text"
-              id="front"
-              name="front"
-              placeholder="Front side of card"
-              value={card.front}
-              onChange={changeHandler}
-              className="form-control"
-            ></textarea>
-          </div>
-
-          <div className="form-group">
-            <label>Back</label>
-            <textarea
-              id="back"
-              type="text"
-              name="back"
-              placeholder="Back side of card"
-              value={card.back}
-              onChange={changeHandler}
-              className="form-control"
-            ></textarea>
-          </div>
-          <div className="d-flex bd-highlight mb-3">
-            <div className="p-2 bd-highlight">
-              <button className="btn btn-secondary">
-                <Link to={`/decks/${deck.id}`} style={{ color: "#FFF" }}>
-                  Done
-                </Link>
-              </button>
-            </div>
-            <div className="p-2 bd-highlight">
-              <button
-                className="btn btn-primary"
-                type="submit"
-                onClick={handleSubmit}
-              >
-                Save
-              </button>
-            </div>
-          </div>
-        </fieldset>
-      </form>
+      <Form
+        card={card}
+        changeHandler={changeHandler}
+        deckId={deckId}
+        handleSubmit={handleSubmit}
+        FormName={`${deck.name}: Add Card`}
+        Cancel="Done"
+        Submit="Save"
+      />
     </div>
   );
 }

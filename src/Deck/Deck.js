@@ -45,7 +45,7 @@ function Deck() {
             <Link to="/">Home</Link>
           </li>
           <li className="breadcrumb-item active" aria-current="page">
-            {`${deck.name}`}
+         {`${deck.name}`}
           </li>
         </ol>
       </nav>
@@ -86,12 +86,12 @@ function Deck() {
           {deck.cards?.map((card) => (
             <div className="list-group-item" key={card.id}>
               <div className="d-flex p-2 bd-highlight">
-                <div className= "container-fluid">
-                <div className="d-flex justify-content-between">
-                  <p>{card.front}</p>
-               
-                  <p>{card.back}</p>
-                </div>
+                <div className="container-fluid">
+                  <div className="d-flex justify-content-between">
+                    <p>{card.front}</p>
+
+                    <p>{card.back}</p>
+                  </div>
                 </div>
               </div>
               <div className="d-flex flex-row-reverse bd-highlight">
@@ -99,13 +99,15 @@ function Deck() {
                   <button
                     className="btn btn-danger"
                     onClick={() => {
-                      if (window.confirm(
-                        "Delete this card? You will not be able to recover it."
-                      )) {
+                      if (
+                        window.confirm(
+                          "Delete this card? You will not be able to recover it."
+                        )
+                      ) {
                         deleteCard(`${card.id}`);
                         window.location.reload(false);
                       }
-                    } }
+                    }}
                   >
                     Delete
                   </button>
@@ -115,7 +117,7 @@ function Deck() {
                     className="btn btn-secondary"
                     onClick={() => {
                       history.push(`/decks/${deckId}/cards/${card.id}/edit`);
-                    } }
+                    }}
                   >
                     Edit
                   </button>

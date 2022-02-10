@@ -32,7 +32,9 @@ function Study() {
       </nav>
       <h1>Study: {deck.name}</h1>
 
+      
       <div>
+        {/* {deck.cards} */}
         <StudyCard cards={deck.cards} />
       </div>
     </div>
