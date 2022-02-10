@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import { useHistory, Link, useParams } from "react-router-dom";
 
 function StudyCard({ cards }) {
-  console.log ("cards" + cards)
   const [currentCard, setCurrentCard] = useState(0);
   const [frontSide, setFrontSide] = useState(true);
   const history = useHistory();
